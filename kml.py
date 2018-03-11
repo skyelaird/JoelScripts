@@ -1,0 +1,20 @@
+f = open('flight.kml', 'w')
+
+#Writing the kml file.
+f.write("<?xml version='1.0' encoding='UTF-8'?>\n")
+f.write("<kml xmlns='http://earth.google.com/kml/2.2'>\n")
+f.write("<Document>\n")
+f.write("<Placemark>\n")
+f.write("   <name>flight</name>\n")
+f.write("   <LineString>\n")
+f.write("       <extrude>1</extrude>\n")
+f.write("       <altitudeMode>absolute</altitudeMode>\n")
+f.write("       <coordinates>\n")
+for i in range(0,len(data['altitude']),10):  #Here I skip some data
+    f.write("        "+str(data['LON_GPS'][i]) + ","+ str(data['LAT_GPS'][i]) + "," + str(data['altitude'][i]) +"\n")    
+f.write("       </coordinates>\n")
+f.write("   </LineString>\n")
+f.write("</Placemark>\n")
+f.write("</Document>")
+f.write("</kml>\n")
+f.close()
